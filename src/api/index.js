@@ -4,7 +4,6 @@ return: promise
 */
 import ajax from "./ajax";
 
-const BASE = "http://huangjiangjun.top:9000";
 export const getSongsInfoByKeyWord = (keywords) =>
   ajax("/search", { keywords: keywords });
 

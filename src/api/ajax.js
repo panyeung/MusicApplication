@@ -5,6 +5,8 @@ import axios from "axios";
     Encapsulate a new promise outside of axios, allow handle
     exception in 1 place.
 */
+
+axios.defaults.baseURL = "http://huangjiangjun.top:9000/";
 export default function ajax(url, data = {}, type = "GET") {
   //executer
   return new Promise((resolve, reject) => {
