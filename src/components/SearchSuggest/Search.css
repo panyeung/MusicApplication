@@ -1,0 +1,15 @@
+.autoContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.options {
+  display: flex;
+}
+
+.options-title {
+  flex: 0.3;
+}
+.options-item {
+  flex: 0.7;
+}

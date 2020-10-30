@@ -1,0 +1,14 @@
+.player {
+  padding: 30px;
+  color: white;
+  background: linear-gradient(rgb(91, 87, 115), rgba(0, 0, 0, 1));
+}
+.pagination > ul > li > button {
+  color: white;
+  margin-top: 10px;
+  background-color: #1db954;
+}
+
+.spinner {
+  text-align: center;
+}
