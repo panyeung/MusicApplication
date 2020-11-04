@@ -1,70 +1,80 @@
-# Getting Started with Create React App
+# React Netease Music
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React Netease Music——It is a music application.
 
-## Available Scripts
+I always want to make a music player. Recently I found out there is an API provide music resource. So I decided
+make a application based on that. The code use react. Did not use any additional database. I am welcome your
+advice!
 
-In the project directory, you can run:
+## project address
 
-### `npm start`
+[NetMusic](https://netmusic-eebee.web.app/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Functionality
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- [] 登录/登出（目前仅支持手机密码登录）
+- [x] discovery
+  - [] banner
+  - [x] recommend playlist
+  - [] recommend MV
+- [] Daily music update
+- [x] All playlist
+  - [] playlist search
+- [x] playlist record
+  - [x] history
+- [x] Search
+  - [x] search with keyword
+  - [] search suggestion
+  - [] search page
+- [ ] rank
+- [ ] singer page
+- [ ] singer detail page
+- [ ] MV related and play functionality
+- [ ] created, edit, destroy playlist
+- [ ] message
+- [ ] change theme
+- [ ] ......Add more functionality based on mood😂
 
-### `npm test`
+Caution: Some songs cannot be play because of license.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## tech
 
-### `npm run build`
+- React，use react hook for state management，did not use any additional database。
+- Material ui for the spinner, and UI,
+- https://github.com/lijinke666/react-music-player beautify music player
+- CSS Modules。
+- Webpack。
+- Eslint 做代码检查。
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## API
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+[NeteaseCloudMusicApi](https://binaryify.github.io/NeteaseCloudMusicApi)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 播放器的相关截图
 
-### `npm run eject`
+![01_个性推荐页](./resources/01_个性推荐页.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![02_每日歌曲推荐](./resources/02_每日歌曲推荐.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![03_全部歌单](./resources/03_全部歌单.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![04_最新音乐页](./resources/04_最新音乐页.png)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![05_歌单详情页](./resources/05_歌单详情页.png)
 
-## Learn More
+![06_音乐播放详情](./resources/06_音乐播放详情.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![07_播放记录功能](./resources/07_播放记录功能.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![08_搜索功能](./resources/08_搜索功能.png)
 
-### Code Splitting
+![09_搜索结果页](./resources/09_搜索结果页.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Start Project
 
-### Analyzing the Bundle Size
+```
+yarn
+yarn dev
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+visit in browser：`http://localhost:3000`

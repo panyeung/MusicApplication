@@ -6,7 +6,7 @@ import axios from "axios";
     exception in 1 place.
 */
 
-axios.defaults.baseURL = "http://huangjiangjun.top:9000/";
+axios.defaults.baseURL = "https://warm-refuge-90006.herokuapp.com/";
 export default function ajax(url, data = {}, type = "GET") {
   //executer
   return new Promise((resolve, reject) => {
@@ -15,6 +15,7 @@ export default function ajax(url, data = {}, type = "GET") {
     if (type === "GET") {
       promise = axios.get(url, {
         //config params
+        // withCredentials: true,
         params: data,
       });
     } else {

@@ -14,6 +14,11 @@ import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 function App() {
   const [error, setError] = useState(false);
   //const [currentPlayIndex, setCurrentPlayIndex] = useState(0);
+
+  const curPlayList = useSelector(
+    (state) => state.playListReducer.currentPlayList
+  );
+
   let audioList = useSelector((state) => {
     if (state.playListReducer.audioList.length === 0) {
       return storageUtils.getAudioLists();
@@ -62,7 +67,7 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/songlist" component={playList} />
+        {curPlayList && <Route path="/songlist" component={playList} />}
         <Route path="/search/:keyword" component={Search} />
         <Route path="/" component={discovery} />
       </Switch>
@@ -83,6 +88,7 @@ function App() {
           loadAudioErrorPlayNext={false}
           autoHiddenCover={true}
           onPlayIndexChange={onPlayIndexChange}
+          rel="noreferrer"
         />
       </ErrorBoundary>
     </BrowserRouter>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import "./discovery.css";
 import PlayListCard from "../../components/PlayListCard/PlayListCard";
@@ -14,30 +14,31 @@ export const Discovery = () => {
   const [Total, setTotal] = useState(0);
   const [Loading, setLoading] = useState(false);
 
-  const getPlayLists = async (limit, offset) => {
+  const getPlayLists = useCallback(async (limit, offset) => {
     setLoading(true);
     const response = await getTopPlaylist(limit, offset);
-    console.log("Popular PlayList", response.data);
+    //console.log("Popular PlayList", response.data);
     const playlists = response.data.playlists;
     setPlayLists(playlists);
     setTotal(response.data.total);
     setLoading(false);
-  };
+  }, []);
 
   useEffect(() => {
     getPlayLists(playListPerPage, 0);
   }, [playListPerPage]);
 
-  const pageChange = async (event, number) => {
+  const pageChange = useCallback(async (event, number) => {
     setLoading(true);
-    console.log("pageChange", number);
+    //console.log("pageChange", number);
     await getPlayLists(playListPerPage, number * playListPerPage);
     setLoading(false);
-  };
+  }, []);
 
+  const tabClick = () => {};
   return (
     <div className="discover">
-      <Header />
+      <Header tabClick={tabClick} />
       {Loading ? (
         <CircularSpinner className="spinner" />
       ) : (

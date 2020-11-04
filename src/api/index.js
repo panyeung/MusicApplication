@@ -20,3 +20,6 @@ export const getSongLyric = (id) => ajax("/lyric", { id: id });
 
 export const searchByKeyWord = (keywords, limit, offset) =>
   ajax("/search", { keywords: keywords, limit: limit, offset: offset });
+
+export const getHighQualityPlayList = (limit, before = 0) =>
+  ajax("/playlist/highquality/tags", { limit: limit, before: before });

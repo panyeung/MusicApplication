@@ -12,6 +12,7 @@ function PlayList() {
   const curPlayList = useSelector(
     (state) => state.playListReducer.currentPlayList
   ).playlist;
+
   let tracks = [];
   curPlayList.trackIds?.map((trackId, i) => tracks.push(trackId.id));
   const [Tracks, setTracks] = useState([]);
