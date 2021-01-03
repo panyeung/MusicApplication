@@ -1,13 +1,14 @@
 import React from "react";
+import WarningIcon from "@material-ui/icons/Warning";
 import { useDispatch } from "react-redux";
 import { getSongURLbyID } from "../../api";
 import "./SongRow.css";
 
-function SongRow({ id, artists, name, pic, album }) {
+function SongRow({ id, artists, name, pic, album, url }) {
   const dispatch = useDispatch();
   const rowClick = async () => {
     console.log("rowClick", name);
-    console.log("rowClick", id);
+    console.log("rowClickID", id);
     const response = await getSongURLbyID(id);
 
     let musicUrl = response.data.data[0].url;
@@ -53,6 +54,7 @@ function SongRow({ id, artists, name, pic, album }) {
           {artists.map((artist) => artist.name).join(", ")} - {album.name}
         </p>
       </div>
+      {url ? null : <WarningIcon />}
     </div>
   );
 }

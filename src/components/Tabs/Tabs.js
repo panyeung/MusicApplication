@@ -4,6 +4,7 @@ import Paper from "@material-ui/core/Paper";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 //import Search from "../Search/Search";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
@@ -13,11 +14,12 @@ const useStyles = makeStyles({
 
 export default function CenteredTabs() {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState("discovery");
+  let history = useHistory();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-    console.log(newValue);
+    history.push(`/discovery/${newValue}`);
   };
 
   return (
@@ -29,9 +31,9 @@ export default function CenteredTabs() {
         textColor="primary"
         variant="fullWidth"
       >
-        <Tab label="discovery" />
-        <Tab label="Item Two" />
-        <Tab label="Item Three" />
+        <Tab label="discovery" value="discovery" />
+        <Tab label="Top PlayList" value="highQuality" />
+        <Tab label="My PlayList" value="MyPlayList" />
       </Tabs>
     </Paper>
   );

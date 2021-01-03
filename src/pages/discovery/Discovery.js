@@ -2,43 +2,51 @@ import React, { useCallback, useEffect, useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import "./discovery.css";
 import PlayListCard from "../../components/PlayListCard/PlayListCard";
-import { getTopPlaylist } from "../../api";
+import { getHighQualityPlayList, getTopPlaylist } from "../../api";
 import Pagination from "@material-ui/lab/Pagination";
 import Header from "../../components/Header/Header";
 import CircularSpinner from "../../components/CircularSpinner/CircularSpinner";
+import { useLocation } from "react-router-dom";
 
 export const Discovery = () => {
-  //const classes = useStyles();
   const [PlayLists, setPlayLists] = useState([]);
   const [playListPerPage] = useState(12);
   const [Total, setTotal] = useState(0);
   const [Loading, setLoading] = useState(false);
+  let location = useLocation();
 
-  const getPlayLists = useCallback(async (limit, offset) => {
-    setLoading(true);
-    const response = await getTopPlaylist(limit, offset);
-    //console.log("Popular PlayList", response.data);
-    const playlists = response.data.playlists;
-    setPlayLists(playlists);
-    setTotal(response.data.total);
-    setLoading(false);
-  }, []);
+  const getPlayLists = useCallback(
+    async (limit, offset, route) => {
+      setLoading(true);
+      let response;
+      if (route === "/discovery/highQuality") {
+        response = await getHighQualityPlayList(limit);
+      } else {
+        response = await getTopPlaylist(limit, offset);
+      }
+      console.log("Popular PlayList", response.data);
+      const playlists = response.data.playlists;
+      setPlayLists(playlists);
+      setTotal(response.data.total);
+      setLoading(false);
+    },
+    [location.pathname]
+  );
 
   useEffect(() => {
-    getPlayLists(playListPerPage, 0);
-  }, [playListPerPage]);
+    getPlayLists(playListPerPage, 0, location.pathname);
+  }, [playListPerPage, location.pathname]);
 
   const pageChange = useCallback(async (event, number) => {
     setLoading(true);
-    //console.log("pageChange", number);
     await getPlayLists(playListPerPage, number * playListPerPage);
+
     setLoading(false);
   }, []);
 
-  const tabClick = () => {};
   return (
     <div className="discover">
-      <Header tabClick={tabClick} />
+      <Header />
       {Loading ? (
         <CircularSpinner className="spinner" />
       ) : (

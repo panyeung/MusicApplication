@@ -14,6 +14,7 @@ import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 function App() {
   const [error, setError] = useState(false);
   //const [currentPlayIndex, setCurrentPlayIndex] = useState(0);
+  const dispatch = useDispatch();
 
   const curPlayList = useSelector(
     (state) => state.playListReducer.currentPlayList
@@ -27,7 +28,6 @@ function App() {
     }
   });
 
-  const dispatch = useDispatch();
   const SongDelete = (currentPlayId, audioLists, audioInfo) => {
     if (error === false) {
       console.log(audioLists);
@@ -69,6 +69,7 @@ function App() {
       <Switch>
         {curPlayList && <Route path="/songlist" component={playList} />}
         <Route path="/search/:keyword" component={Search} />
+        <Route path="/:view" component={discovery} />
         <Route path="/" component={discovery} />
       </Switch>
       <ErrorBoundary>
@@ -81,14 +82,15 @@ function App() {
           spaceBar={true}
           autoPlay={false}
           onAudioError={onAudioError}
-          clearPriorAudioLists={true}
+          // clearPriorAudioLists={true}
           quietUpdate={true}
           muted="muted"
           glassBg={true}
           loadAudioErrorPlayNext={false}
           autoHiddenCover={true}
           onPlayIndexChange={onPlayIndexChange}
-          rel="noreferrer"
+          defaultPlayMode="singleLoop"
+          remember={true}
         />
       </ErrorBoundary>
     </BrowserRouter>

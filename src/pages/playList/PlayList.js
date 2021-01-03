@@ -5,7 +5,7 @@ import PlayListTitle from "../../components/PlayListTitle/PlayListTitle";
 import SongRow from "../../components/SongRow/SongRow";
 import CircularSpinner from "../../components/CircularSpinner/CircularSpinner";
 import { useSelector } from "react-redux";
-import { getSongDetailById } from "../../api";
+import { getAvailableSongsById } from "../../api";
 import Pagination from "@material-ui/lab/Pagination";
 
 function PlayList() {
@@ -24,10 +24,18 @@ function PlayList() {
     let currTrack = tracks.slice(number * 10, number * 10 + 10);
     let query = currTrack.join(",");
     console.log(query);
-    const response = await getSongDetailById(query);
-    let result = response.data;
-    console.log("Get Song Info", result);
-    setTracks(result.songs);
+    //const response = await getSongDetailById(query);
+    //let result = response.data;
+    //console.log("Get Song Info", result.songs);
+    //Check if the song is available
+    let songsAvailable;
+    if (query !== "") {
+      songsAvailable = await getAvailableSongsById(query);
+      console.log("AvailableSongs", songsAvailable);
+    }
+
+    //setTracks(result.songs);
+    setTracks(songsAvailable);
     setCurrentTrack(currTrack);
     setLoading(false);
   }, []);
@@ -53,12 +61,13 @@ function PlayList() {
         ) : (
           Tracks?.map((song, i) => (
             <SongRow
-              key={song.id}
+              key={i}
               id={song.id}
               artists={song.ar}
               name={song.name}
               pic={song.al.picUrl}
               album={song.al}
+              url={song.url}
             />
           ))
         )}

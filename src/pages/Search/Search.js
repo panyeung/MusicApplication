@@ -19,12 +19,12 @@ function Search() {
       setLoading(true);
       console.log(limit * number);
       const response = await searchByKeyWord(keyword, limit, limit * number);
-      console.log(response.data);
-      let result = response.data.result.songs;
-      console.log("KeywordSearch", result);
-      setRows(result);
+      let songsInfo = response[0];
+      let songsCount = response[1];
+      console.log("KeywordSearch", response);
+      setRows(songsInfo);
       setLoading(false);
-      setSongCount(response.data.result.songCount);
+      setSongCount(songsCount);
     },
     [limit, keyword]
   );
@@ -48,11 +48,13 @@ function Search() {
       ) : (
         rows.map((row, i) => (
           <SongRow
-            key={row.id}
+            key={i}
             id={row.id}
-            artists={row.artists}
+            artists={row.ar}
             name={row.name}
-            album={row.album.name}
+            pic={row.al.picUrl}
+            album={row.al}
+            url={row.url}
           />
         ))
       )}

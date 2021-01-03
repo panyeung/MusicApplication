@@ -86,7 +86,6 @@ export default function PlayListTitle({ tracks, tracksInfo }) {
     console.log("PlayALL", result);
     console.log("songTracksInfo", tracksInfo);
     setLoading(false);
-
     let audioList = [];
     tracksInfo.map((Info, index) => {
       let SongUrl = findMatch(result.data, Info);
